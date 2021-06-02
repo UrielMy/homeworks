@@ -1,18 +1,15 @@
-function Student(name, faculty, marks) {
-   this.name = name;
-   this.faculty = faculty;
-   this.marks = marks;
+function calc(a) {
+	return {
+		add: (b) => a = a + b,
+		sub: (b) => a = a - b,
+		mult: (b) => a = a * b,
+		div: (b) => a = a / b,
+		getResult: () => a 		
+	};
 }
-
-
-const student = new Student();
-
-function getAvgMarks() {
-	return `${this.marks}`
-}
-// Методы
-student.getAvgMark(); // средняя оценка студента
-student.getMaxMark(); // максимальная оценка
-student.getMinMark(); // минимальная оценка
-student.getTotal(); // сумма оценок
-student.getInfo(); // информация о студенте в виде name + faculty + total
+const result = calc(12);
+console.log(result.add(10)); 
+console.log(result.sub(1)); 
+console.log(result.mult(4)); 
+console.log(result.div(7)); 
+console.log(result.getResult()); 
