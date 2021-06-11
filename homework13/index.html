@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<script defer src="init.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div class="main" id="accordion">
+		<div class="block">
+			<div class="title">Title 1</div>
+			<div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eligendi veritatis eius repellat nam, ipsam debitis id obcaecati aliquam? Distinctio fugiat ipsa fuga perspiciatis aliquam doloremque expedita nam repudiandae a.</div>
+		</div>
+		<div class="block">
+			<div class="title">Title 2</div>
+			<div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eligendi veritatis eius repellat nam, ipsam debitis id obcaecati aliquam? Distinctio fugiat ipsa fuga perspiciatis aliquam doloremque expedita nam repudiandae a.</div>
+		</div>
+		<div class="block">
+			<div class="title">Title 3</div>
+			<div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eligendi veritatis eius repellat nam, ipsam debitis id obcaecati aliquam? Distinctio fugiat ipsa fuga perspiciatis aliquam doloremque expedita nam repudiandae a.</div>
+		</div>
+	</div>
+	<button class="open-all-btn">Open all</button>
+	<button class="close-all-btn">Close all</button>
+	<div class="values">
+		<button class="add-block-btn">Add block</button>
+		<input class="title-value" type="text" placeholder="Fill title">
+		<textarea class="description-value" type="text" placeholder="Fill description"></textarea>
+	</div>
+	<script type='template/javascript' id="newBlock">
+		<div class="block">
+			<div class="title">{{title}}</div>
+			<div class="content">{{content}}</div>
+		</div>
+	</script>
+</body>
+</html>
