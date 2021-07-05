@@ -13,12 +13,20 @@ const inputBlur = () => {
 };
 const loginClick = (evt) => {
   evt.preventDefault();
-  authCheck(loginEl, passwordEl, loginFormEl, loginResultEl, loginBtnEl);
+  authCheck(loginEl.value, passwordEl.value, function() {
+    loginFormEl.remove();
+    loginResultEl.innerText = "Вы ввели правильно! Ура";
+  }, function() {
+    loginResultEl.innerText = "Вы ввели не правильно!";
+    loginBtnEl.setAttribute("disabled", true);
+    loginEl.value = "";
+    passwordEl.value = "";
+  });
 };
-function authCheck(emailEl, passwordEl, formEl, resultEl, loginBtnEl) {
+function authCheck(email, password, onSuccess, onFail) {
   let loginValues = {
-    email: emailEl.value,
-    password: passwordEl.value
+    email: email,
+    password: password,
   };
   loginValues = JSON.stringify(loginValues);
   let xhr = new XMLHttpRequest();
@@ -26,13 +34,9 @@ function authCheck(emailEl, passwordEl, formEl, resultEl, loginBtnEl) {
   xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
   xhr.onload = function () {
     if (xhr.status == 200) {
-      formEl.remove();
-      resultEl.innerText = "Вы ввели правильно! Ура";
+      onSuccess();
     } else {
-      resultEl.innerText = "Вы ввели не правильно!";
-      loginBtnEl.setAttribute("disabled", true);
-      emailEl.value = "";
-      passwordEl.value = "";
+      onFail();
     }
   };
   xhr.send(loginValues);
