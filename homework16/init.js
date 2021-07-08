@@ -18,7 +18,18 @@ const loginClick = (evt) => {
     passwordEl.value,
     function () {
       loginFormEl.remove();
-      loginResultEl.innerText = "Вы ввели правильно! Ура";
+      getUsersInfo(function (e) {
+        const response = JSON.parse(e.target.response);
+        response.data.forEach((element) => {
+          let divEl = document.createElement("div");
+          let divTemplate = document.querySelector("#new-div").innerHTML;
+          divEl.innerHTML = divTemplate
+            .replace("{{avatar}}", element.avatar)
+            .replace("{{first_name}}", element.first_name)
+            .replace("{{last_name}}", element.last_name);
+          loginResultEl.append(divEl);
+        });
+      });
     },
     function () {
       loginResultEl.innerText = "Вы ввели не правильно!";
@@ -45,6 +56,14 @@ function authCheck(email, password, onSuccess, onFail) {
     }
   };
   xhr.send(loginValues);
+}
+function getUsersInfo(receipt) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://reqres.in/api/users?page=1", true);
+  xhr.send();
+  xhr.onload = function (e) {
+    receipt(e);
+  };
 }
 loginEl.addEventListener("blur", inputBlur);
 passwordEl.addEventListener("blur", inputBlur);
