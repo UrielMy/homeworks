@@ -2,11 +2,7 @@ export class Helper {
   result = [];
   reverse(str) {
     let reverseResult = str.split("").reverse().join("");
-    this.result.push(
-      `Функция: reverse, аргументы: ${Object.values(arguments).join(
-        ","
-      )},  результат: ${reverseResult}`
-    );
+    this.setResult("reverse", Object.values(arguments), reverseResult);
     return reverseResult;
   }
   nTimes(str, times) {
@@ -14,20 +10,12 @@ export class Helper {
     for (let i = 0; i < times; i++) {
       newStr = newStr + str;
     }
-    this.result.push(
-      `Функция: nTimes, аргументы: ${Object.values(arguments).join(
-        ","
-      )},  результат: ${newStr}`
-    );
+    this.setResult("nTimes", Object.values(arguments).join(","), newStr);
     return newStr;
   }
   getPart(str) {
     let newStr = str.slice(0, Math.round(str.length / 2));
-    this.result.push(
-      `Функция: getPart, аргументы: ${Object.values(arguments).join(
-        ","
-      )},  результат: ${newStr}`
-    );
+    this.setResult("getPart", Object.values(arguments), newStr);
     return newStr;
   }
   removeDuplicates(str) {
@@ -37,14 +25,15 @@ export class Helper {
         newStr = newStr + str[i];
       }
     }
-    this.result.push(
-      `Функция: removeDuplicates, аргументы: ${Object.values(arguments).join(
-        ","
-      )},  результат: ${newStr}`
-    );
+    this.setResult("removeDuplicates", Object.values(arguments), newStr);
     return newStr;
   }
   getHistory = function () {
     return this.result.join("\n");
   };
+  setResult(funcName, args, result) {
+    this.result.push(
+      `Функция: ${funcName}, аргументы: ${args}, результат: ${result}`
+    );
+  }
 }
